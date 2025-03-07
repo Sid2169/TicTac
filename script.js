@@ -41,3 +41,52 @@ const Board = (() => {
     return { init, getBoard, makeMove, checkWinner };
 })();
 
+
+const Game = (() => {
+    let currentPlayer;
+    let mode; // "2-player" or "ai"
+    let aiDifficulty;
+    let isGameOver;
+
+    const init = (gameMode = "2-player", difficulty = "easy") => {
+        Board.init();
+        currentPlayer = "X"; // X always starts
+        mode = gameMode;
+        aiDifficulty = difficulty;
+        isGameOver = false;
+    };
+
+    const getCurrentPlayer = () => currentPlayer;
+
+    const playTurn = (index) => {
+        if (isGameOver) return false;
+        if (!Board.makeMove(index, currentPlayer)) return false;
+
+        let winner = Board.checkWinner();
+        if (winner) {
+            isGameOver = true;
+            return { status: "gameover", winner };
+        }
+
+        switchTurn();
+
+        if (mode === "ai" && currentPlayer === "O") {
+            playAITurn();
+        }
+
+        return { status: "continue" };
+    };
+
+    const switchTurn = () => {
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+    };
+
+    const playAITurn = () => {
+        let aiMove = AI.getBestMove(Board.getBoard(), aiDifficulty);
+        if (aiMove !== -1) {
+            playTurn(aiMove);
+        }
+    };
+
+    return { init, getCurrentPlayer, playTurn };
+})();
