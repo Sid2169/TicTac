@@ -90,3 +90,92 @@ const Game = (() => {
 
     return { init, getCurrentPlayer, playTurn };
 })();
+
+// AI module for ai
+const AI = (() => {
+    // Get available empty spots on the board
+    const getAvailableMoves = (board) => {
+        return board.map((val, index) => (val === null ? index : null)).filter((val) => val !== null);
+    };
+
+    // Easy mode: Random move
+    const getRandomMove = (board) => {
+        const available = getAvailableMoves(board);
+        return available.length > 0 ? available[Math.floor(Math.random() * available.length)] : -1;
+    };
+
+    // Normal mode: Blocks winning moves
+    const getNormalMove = (board) => {
+        const available = getAvailableMoves(board);
+        for (let move of available) {
+            let testBoard = [...board];
+            testBoard[move] = "O"; // Simulate AI move
+            if (Board.checkWinner(testBoard) === "O") return move;
+
+            testBoard[move] = "X"; // Simulate player move
+            if (Board.checkWinner(testBoard) === "X") return move;
+        }
+        return getRandomMove(board); // If no critical move, pick random
+    };
+
+    // Hard mode: Plays optimally with occasional mistakes
+    const getHardMove = (board) => {
+        return Math.random() > 0.2 ? getUnbeatableMove(board) : getNormalMove(board);
+    };
+
+    // Unbeatable mode: Minimax algorithm
+    const getUnbeatableMove = (board) => {
+        let bestScore = -Infinity;
+        let bestMove = -1;
+        const available = getAvailableMoves(board);
+
+        for (let move of available) {
+            let testBoard = [...board];
+            testBoard[move] = "O"; // AI makes a move
+            let score = minimax(testBoard, false);
+            if (score > bestScore) {
+                bestScore = score;
+                bestMove = move;
+            }
+        }
+        return bestMove;
+    };
+
+    // Minimax Algorithm
+    const minimax = (board, isMaximizing) => {
+        let winner = Board.checkWinner(board);
+        if (winner === "O") return 10;
+        if (winner === "X") return -10;
+        if (!board.includes(null)) return 0; // Draw
+
+        let bestScore = isMaximizing ? -Infinity : Infinity;
+        const available = getAvailableMoves(board);
+
+        for (let move of available) {
+            let testBoard = [...board];
+            testBoard[move] = isMaximizing ? "O" : "X";
+            let score = minimax(testBoard, !isMaximizing);
+            bestScore = isMaximizing ? Math.max(bestScore, score) : Math.min(bestScore, score);
+        }
+
+        return bestScore;
+    };
+
+    // Public function to get best move based on difficulty
+    const getBestMove = (board, difficulty) => {
+        switch (difficulty) {
+            case "easy":
+                return getRandomMove(board);
+            case "normal":
+                return getNormalMove(board);
+            case "hard":
+                return getHardMove(board);
+            case "unbeatable":
+                return getUnbeatableMove(board);
+            default:
+                return getRandomMove(board);
+        }
+    };
+
+    return { getBestMove };
+})();
