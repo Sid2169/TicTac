@@ -1,0 +1,8 @@
+ /* Root variables for easy theme customization */
+ :root {
+    --primary-color: #222831;   /* Dark Gray-Blue (Base Background) */
+    --accent-color: #00ADB5;    /* Bright Cyan (Main Highlight) */
+    --text-color: #EEEEEE;      /* Soft White (Text) */
+    --secondary-accent: #393E46; /* Muted Dark Gray-Blue (Subtle Depth) */
+    --highlight-color: #F8B400;  /* Warm Golden Yellow (Vibrant Contrast) */
+}
