@@ -35,6 +35,8 @@ body {
     align-items: center;
     justify-content: space-around;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 /* Title styling */
@@ -82,4 +84,85 @@ body {
 .menu-btn:hover {
     background: var(--accent-color);
     color: var(--primary-color);
+}
+
+/* Theme Toggle Container */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Hide Default Checkbox */
+.theme-toggle input {
+    display: none;
+}
+
+/* Toggle Label (Clickable) */
+.toggle-label {
+    width: 50px;
+    height: 25px;
+    background: var(--secondary-accent);
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    transition: background 0.3s ease;
+}
+
+/* Toggle Indicator (Sliding Circle) */
+.toggle-label::before {
+    content: "";
+    width: 22px;
+    height: 22px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+/* Sun & Moon Icons */
+.icon {
+    position: absolute;
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+}
+
+/* Sun (Default in Dark Mode) */
+.sun {
+    left: 6px;
+    color: #FFB400; /* Golden Sun */
+}
+
+/* Moon (Hidden in Dark Mode) */
+.moon {
+    right: 6px;
+    opacity: 0;
+    color: #007B83; /* Deep Cyan Moon */
+}
+
+/* When Checkbox is Checked (Light Mode) */
+#themeSwitch:checked + .toggle-label {
+    background: var(--highlight-color);
+}
+
+/* Move Toggle Circle */
+#themeSwitch:checked + .toggle-label::before {
+    left: 24px;
+    background: var(--text-color);
+}
+
+/* Hide Sun, Show Moon */
+#themeSwitch:checked + .toggle-label .sun {
+    opacity: 0;
+}
+
+#themeSwitch:checked + .toggle-label .moon {
+    opacity: 1;
 }
