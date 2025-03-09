@@ -6,3 +6,12 @@
     --secondary-accent: #393E46; /* Muted Dark Gray-Blue (Subtle Depth) */
     --highlight-color: #F8B400;  /* Warm Golden Yellow (Vibrant Contrast) */
 }
+
+/* Light Mode (Activated when .light class is added to <body>) */
+.light {
+    --primary-color: #F5F5F5;
+    --accent-color: #007B83;
+    --text-color: #222831;
+    --secondary-accent: #E0E0E0;
+    --highlight-color: #FFB400;
+}
