@@ -35,7 +35,7 @@
  /* Header container */
  .header-container {
      width: 100%;
-     padding: 20px 10%;
+     padding: 20px 2%;
      box-sizing: border-box;
      background: rgba(0, 0, 0, 0.2);
      /* Subtle transparency */
@@ -58,6 +58,7 @@
      color: var(--text-color);
      position: relative;
      cursor: pointer;
+     margin: auto;
  }
 
  /* Animated underline effect */
@@ -178,3 +179,11 @@
  #themeSwitch:checked+.toggle-label .moon {
      opacity: 1;
  }
+
+ .x {
+    color: #FF4C29; /* Vibrant Orange-Red */
+}
+
+.o {
+    color: #17E3A1; /* Electric Neon Green */
+}
