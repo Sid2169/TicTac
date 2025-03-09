@@ -15,3 +15,71 @@
     --secondary-accent: #E0E0E0;
     --highlight-color: #FFB400;
 }
+
+/* Reset and base styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+/* Header container */
+.header-container {
+    width: 100%;
+    padding: 20px 10%;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.2); /* Subtle transparency */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Title styling */
+.title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-color);
+    position: relative;
+    cursor: pointer;
+}
+
+/* Animated underline effect */
+.title::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-color);
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.title:hover::after {
+    transform: scaleX(1);
+}
+
+/* Optional: Add a simple button for future game options */
+.menu-btn {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    background: none;
+    border: 2px solid var(--accent-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-btn:hover {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
