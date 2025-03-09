@@ -59,8 +59,7 @@ const Game = (() => {
     const getCurrentPlayer = () => currentPlayer;
 
     const playTurn = (index) => {
-        if (isGameOver) return false;
-        if (!Board.makeMove(index, currentPlayer)) return false;
+        if (isGameOver || !Board.makeMove(index, currentPlayer)) return false;
 
         let winner = Board.checkWinner();
         if (winner) {
@@ -94,9 +93,8 @@ const Game = (() => {
 // AI module for ai
 const AI = (() => {
     // Get available empty spots on the board
-    const getAvailableMoves = (board) => {
-        return board.map((val, index) => (val === null ? index : null)).filter((val) => val !== null);
-    };
+    const getAvailableMoves = (board) => board.map((val, index) => val === null ? index : null).filter(val => val !== null);
+
 
     // Easy mode: Random move
     const getRandomMove = (board) => {
