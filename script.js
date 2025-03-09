@@ -22,7 +22,7 @@ const Board = (() => {
         return false; //Invalid Move
     };
 
-    const checkWinner = () => {
+    const checkWinner = (currentBoard = board) => {
         const winPatterns = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
             [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
@@ -31,11 +31,11 @@ const Board = (() => {
 
         for (let pattern of winPatterns) {
             const [a, b, c] = pattern;
-            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-                return board[a]; // Return 'X' or 'O' as winner
+            if (currentBoard[a] && currentBoard[a] === currentBoard[b] && currentBoard[a] === currentBoard[c]) {
+                return currentBoard[a]; // Return 'X' or 'O' as winner
             }
         }
-        return board.includes(null) ? null : 'draw'; // Game or draw
+        return currentBoard.includes(null) ? null : 'draw'; // Game or draw
     };
 
     return { init, getBoard, makeMove, checkWinner };
