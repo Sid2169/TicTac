@@ -179,17 +179,20 @@ const AI = (() => {
 })();
 
 const UI = (() => {
-    let themeToggle = () => {
-        document.body.classList.toggle('light');
-    };
-
-    let showHidePopup = () => {
-        document.querySelector('.translucent-overlay').classList.toggle('hidden');
-    };
-
     
+    const body = document.body;
+    let themeToggle = () => {
+        body.classList.toggle('light');
+    };
+
+    const translucentOverlay = document.querySelector('.translucent-overlay');
+    let showHidePopup = () => {
+        translucentOverlay.classList.toggle('hidden');
+    };
 
     return {themeToggle, showHidePopup}
 })();
 
 document.getElementById("themeSwitch").addEventListener("change", UI.themeToggle);
+
+document.getElementById('cancel-popup-btn').addEventListener('click', UI.showHidePopup);
