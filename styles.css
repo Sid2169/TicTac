@@ -187,3 +187,59 @@
 .o {
     color: #17E3A1; /* Electric Neon Green */
 }
+
+.translucent-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#popup {
+    text-align: center;
+    background-color: var(--secondary-accent);
+    padding: 1rem 4rem;
+    border-radius: 1rem;
+    border: 1px solid var(--accent-color);
+}
+#popup-heading {
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+}
+
+#popup-text {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#popup button {
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    margin: 0.4rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#confirm-popup-btn {
+    background-color: #FF4C29;
+}
+
+#popup button:hover {
+    transform: scale(1.1);
+}
+
+#popup button:active {
+    transform: scale(0.9);
+}
+
+.hidden {
+    display: none;
+}
+

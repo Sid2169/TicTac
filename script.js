@@ -178,6 +178,18 @@ const AI = (() => {
     return { getBestMove };
 })();
 
-document.getElementById("themeSwitch").addEventListener("change", function () {
-    document.body.classList.toggle("light");
-});
+const UI = (() => {
+    let themeToggle = () => {
+        document.body.classList.toggle('light');
+    };
+
+    let showHidePopup = () => {
+        document.querySelector('.translucent-overlay').classList.toggle('hidden');
+    };
+
+    
+
+    return {themeToggle, showHidePopup}
+})();
+
+document.getElementById("themeSwitch").addEventListener("change", UI.themeToggle);
