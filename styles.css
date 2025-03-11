@@ -10,6 +10,8 @@
      /* Muted Dark Gray-Blue (Subtle Depth) */
      --highlight-color: #F8B400;
      /* Warm Golden Yellow (Vibrant Contrast) */
+     --colorX: #FF4C29;
+     --colorO: #17E3A1;
  }
 
  /* Light Mode (Activated when .light class is added to <body>) */
@@ -19,6 +21,8 @@
      --text-color: #222831;
      --secondary-accent: #E0E0E0;
      --highlight-color: #FFB400;
+     --colorX: #FF4C29;
+     --colorO: #17E3A1;
  }
 
  @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
@@ -26,7 +30,7 @@
  /* Reset and base styles */
  body {
      margin: 0;
-     padding: 0;
+     padding: 1rem;
      font-family: 'Poppins', sans-serif;
      background-color: var(--primary-color);
      color: var(--text-color);
@@ -59,6 +63,7 @@
      position: relative;
      cursor: pointer;
      margin: auto;
+     text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
  }
 
  /* Animated underline effect */
@@ -74,6 +79,11 @@
      transform: scaleX(0);
      transform-origin: left;
      transition: transform 0.3s ease-in-out;
+ }
+
+ .title:hover {
+    letter-spacing: 4px;
+    transition: 1s;
  }
 
  .title:hover::after {
@@ -181,11 +191,11 @@
  }
 
  .x {
-    color: #FF4C29; /* Vibrant Orange-Red */
+    color: var(--colorX); /* Vibrant Orange-Red */
 }
 
 .o {
-    color: #17E3A1; /* Electric Neon Green */
+    color: var(--colorO); /* Electric Neon Green */
 }
 
 .translucent-overlay {
@@ -241,5 +251,57 @@
 
 .hidden {
     display: none;
+}
+
+.markSelectorContainer {
+    text-align: center;
+    border: 2px solid var(--accent-color);
+    margin: 1rem auto;
+    width: max-content;
+    max-width: 80vw;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-family: 'Changa', Times, serif;
+
+    h3 {
+        color: var(--text-color);
+        font-size: 2rem;
+        font-weight: lighter;
+    }
+
+    button {
+        font-family: 'Spicy Rice';
+        font-size: clamp(2rem, 4rem, 5rem );
+        border: none;
+        margin: 1rem;
+        padding: 0 1.5rem;
+        border-radius: 0.5rem;
+        background-color: var(--secondary-accent);
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.2);
+        transition: 0.3s;
+        box-shadow: 0px 0px 8px 4px rgba(255, 255, 255, 0.9);
+    }
+
+    button:active {
+        transform: scale(0.9);
+        transition: 0.1s;
+        box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.6);
+    }
+
+    .highlight-select-mark {
+        border: 4px solid var(--highlight-color);
+    }
+
+    #selectXBtn {
+        color: var(--colorX);
+    }
+
+    #selectOBtn {
+        color: var(--colorO);
+    }
 }
 

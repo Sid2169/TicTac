@@ -179,7 +179,9 @@ const AI = (() => {
 })();
 
 const UI = (() => {
-    
+
+    let player1 = 'X';
+
     const body = document.body;
     let themeToggle = () => {
         body.classList.toggle('light');
@@ -190,9 +192,26 @@ const UI = (() => {
         translucentOverlay.classList.toggle('hidden');
     };
 
-    return {themeToggle, showHidePopup}
+    let updatePlayer1 = () => {
+        player1 = document.querySelector('.highlight-select-mark').textContent;
+    }
+
+
+
+    return { themeToggle, showHidePopup, updatePlayer1 }
 })();
 
 document.getElementById("themeSwitch").addEventListener("change", UI.themeToggle);
 
 document.getElementById('cancel-popup-btn').addEventListener('click', UI.showHidePopup);
+
+const markSelectorBtns = document.querySelectorAll('.markSelectorContainer button');
+markSelectorBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    markSelectorBtns.forEach((button) => {
+      button.classList.remove('highlight-select-mark');
+    });
+    btn.classList.add('highlight-select-mark');
+    UI.updatePlayer1();
+  });
+});
