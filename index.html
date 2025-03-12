@@ -9,12 +9,13 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Changa&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
     </style>
 </head>
 
 <body>
     <header class="header-container">
-        <div class="title"><span class="x">Tic</span> <span class="o">Tac</span> Toe</div>
+        <div class="title">Tic Tac Toe</div>
         <div class="theme-toggle">
             <input type="checkbox" id="themeSwitch">
             <label for="themeSwitch" class="toggle-label">
@@ -35,10 +36,32 @@
     </div>
 
     <div class="markSelectorContainer">
-        <h3>Select Player 1 :</h3>
-        <button id="selectXBtn" class="highlight-select-mark">X</button>
-        <button id="selectOBtn">O</button>
-        <p><span class="x">'X'</span> goes first</p>
+        
+        <div class="selectionPanels">
+            <h3>Select Player 1 :</h3>
+            <button id="selectXBtn" class="mark highlight-select-mark">X</button>
+            <button id="selectOBtn" class="mark">O</button>
+            <input class="player-name player1" placeholder="Player 1" type="text">
+            <p><span class="x">'X'</span> goes first</p>
+        </div>
+
+        <div class="selectionPanels">
+            <h3>Select Mode :</h3>
+            <button class="modeSelectorBtns highlight-select-mark" id="ai"></button>
+            <button class="modeSelectorBtns" id="two-player"></button>
+            <br>
+            <select name="mode" id="difficulty-selector">
+                <option value="easy">Easy</option>
+                <option value="normal">Normal</option>
+                <option value="hard">Hard</option>
+                <option value="unbeatable">Unbeatable</option>
+            </select>
+            <input type="text" placeholder="Player 2" class="player-name player2 hidden">
+            <p>Select playing mode</p>
+        </div>
+        <br>
+
+        <button class="start-btn">Start Game</button>
     </div>
     <!-- Script Tag -->
     <script src="script.js"></script>

@@ -179,39 +179,85 @@ const AI = (() => {
 })();
 
 const UI = (() => {
+    let player1 = "X";
+    let player2 = "O";
+    let gameMode = "ai";
+    let difficulty = "easy";
 
-    let player1 = 'X';
+    // Store references to DOM elements (passed in)
+    let elements = {};
 
-    const body = document.body;
-    let themeToggle = () => {
-        body.classList.toggle('light');
+    const initUI = ({ themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect }) => {
+        elements = { themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect };
+
+        setEventListeners();
     };
 
-    const translucentOverlay = document.querySelector('.translucent-overlay');
-    let showHidePopup = () => {
-        translucentOverlay.classList.toggle('hidden');
+    const setEventListeners = () => {
+        elements.themeSwitch.addEventListener("change", toggleTheme);
+        elements.popupBtn.addEventListener("click", togglePopup);
+        elements.difficultySelect.addEventListener("change", updateDifficulty);
+
+        elements.markBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                elements.markBtns.forEach((b) => b.classList.remove("highlight-select-mark"));
+                btn.classList.add("highlight-select-mark");
+                updatePlayers(btn.textContent);
+            });
+        });
+
+        elements.modeBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                elements.modeBtns.forEach((b) => b.classList.remove("highlight-select-mark"));
+                btn.classList.add("highlight-select-mark");
+                switchGameMode(btn.id);
+            });
+        });
     };
 
-    let updatePlayer1 = () => {
-        player1 = document.querySelector('.highlight-select-mark').textContent;
-    }
+    const toggleTheme = () => {
+        document.body.classList.toggle("light");
+    };
 
+    const togglePopup = () => {
+        document.querySelector(".translucent-overlay").classList.toggle("hidden");
+    };
 
+    const updatePlayers = (selectedMark) => {
+        player1 = selectedMark;
+        player2 = player1 === "X" ? "O" : "X";
+    };
 
-    return { themeToggle, showHidePopup, updatePlayer1 }
+    const switchGameMode = (mode) => {
+        gameMode = mode;
+        const difficultySelector = document.getElementById('difficulty-selector');
+        const player2 = document.querySelector('.player2');
+        const isAiMode = (gameMode === 'ai');
+      
+        difficultySelector.classList.toggle('hidden', !isAiMode);
+        player2.classList.toggle('hidden', isAiMode);
+      };
+      
+
+    const updateDifficulty = () => {
+        difficulty = elements.difficultySelect.value;
+    };
+
+    const getSettings = () => ({
+        player1,
+        player2,
+        gameMode,
+        difficulty,
+    });
+
+    return { initUI, getSettings };
 })();
 
-document.getElementById("themeSwitch").addEventListener("change", UI.themeToggle);
-
-document.getElementById('cancel-popup-btn').addEventListener('click', UI.showHidePopup);
-
-const markSelectorBtns = document.querySelectorAll('.markSelectorContainer button');
-markSelectorBtns.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    markSelectorBtns.forEach((button) => {
-      button.classList.remove('highlight-select-mark');
-    });
-    btn.classList.add('highlight-select-mark');
-    UI.updatePlayer1();
-  });
+// Initialize UI and pass necessary elements
+UI.initUI({
+    themeSwitch: document.getElementById("themeSwitch"),
+    popupBtn: document.getElementById("cancel-popup-btn"),
+    markBtns: document.querySelectorAll(".mark"),
+    modeBtns: document.querySelectorAll(".modeSelectorBtns"),
+    difficultySelect: document.getElementById("difficulty-selector"),
 });
