@@ -34,6 +34,9 @@
      font-family: 'Poppins', sans-serif;
      background-color: var(--primary-color);
      color: var(--text-color);
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
  }
 
  /* Header container */
@@ -355,3 +358,72 @@
      color: var(--colorO);
  }
  
+ /* Footer Styles */
+.footer {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    margin-top: auto;
+    box-shadow: 4px -2px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.footer-text {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: 'Changa', Times, serif;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-link {
+    font-family: 'Changa', Times, serif;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #94D5C9; /* Soft teal */
+    font-weight: bold;
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.footer-link img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    filter: invert(72%) saturate(300%); /* Lightens icons */
+}
+
+/* Hover Effects */
+.footer-link:hover {
+    background-color: #FDECDD; /* Soft peach */
+    color: #2B4A44;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.footer-link i {
+    font-size: 20px;
+    margin-right: 8px;
+    color: #94D5C9; /* Soft teal */
+    transition: color 0.3s ease-in-out;
+}
+
+/* Change icon color on hover */
+.footer-link:hover i {
+    color: #2B4A44; /* Darker green */
+}
