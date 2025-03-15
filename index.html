@@ -37,7 +37,7 @@
     </div>
 
     <div class="markSelectorContainer">
-        
+
         <div class="selectionPanels">
             <h3>Select Player 1 :</h3>
             <button id="selectXBtn" class="mark highlight-select-mark">X</button>
@@ -65,15 +65,42 @@
         <button class="start-btn">Start Game</button>
     </div>
 
-     <!-- Footer -->
-     <footer class="footer">
+    <div class="game-panel">
+        <div class="scoreboard">
+            <div class="player-score">
+                <span class="player-name">Player X</span>
+                <span class="score" id="scoreX">0</span>
+            </div>
+            <div class="divider">VS</div>
+            <div class="player-score">
+                <span class="player-name">Player O</span>
+                <span class="score" id="scoreO">0</span>
+            </div>
+        </div>
+
+        <div id="gameBoard">
+           <div class="cell x" id="0"></div>
+           <div class="cell o" id="1"></div>
+           <div class="cell x" id="2"></div>
+           <div class="cell" id="3"></div>
+           <div class="cell" id="4"></div>
+           <div class="cell" id="5"></div>
+           <div class="cell" id="6"></div>
+           <div class="cell" id="7"></div>
+           <div class="cell" id="8"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="footer-container">
             <p class="footer-text">Connect with me:</p>
             <div class="footer-links">
                 <a href="https://github.com/Sid2169" target="_blank" class="footer-link github">
                     <i class="fa-brands fa-github"></i> GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/siddhartha-singh-952a64256/" target="_blank" class="footer-link linkedin">
+                <a href="https://www.linkedin.com/in/siddhartha-singh-952a64256/" target="_blank"
+                    class="footer-link linkedin">
                     <i class="fa-brands fa-linkedin"></i> LinkedIn
                 </a>
             </div>
