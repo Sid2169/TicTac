@@ -58,6 +58,13 @@ const Game = (() => {
         mode = gameMode;
         aiDifficulty = difficulty;
         isGameOver = false;
+
+        // If AI is 'X', it should make the first move
+        if (mode === "ai" && aiPlayer === "X") {
+            playAITurn();
+        }
+
+
     };
 
     const getCurrentPlayer = () => currentPlayer;
@@ -88,6 +95,7 @@ const Game = (() => {
         let aiMove = AI.getBestMove(Board.getBoard(), aiDifficulty);
         if (aiMove !== -1) {
             playTurn(aiMove);
+            document.getElementById(`${aiMove}`).classList.add(`${aiPlayer.toLowerCase()}`, 'disabled');
         }
     };
 
@@ -193,8 +201,8 @@ const UI = (() => {
     // Store references to DOM elements (passed in)
     let elements = {};
 
-    const initUI = ({ themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn }) => {
-        elements = { themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn };
+    const initUI = ({ themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn, boardCells }) => {
+        elements = { themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn, boardCells };
 
         setEventListeners();
     };
@@ -221,7 +229,7 @@ const UI = (() => {
         });
 
         elements.startBtn.addEventListener('click', () => {
-            
+
             Game.init(gameMode, difficulty, player1);
             document.querySelector('.markSelectorContainer').classList.add('hidden');
             document.querySelector('.game-panel').classList.remove('hidden');
@@ -231,9 +239,8 @@ const UI = (() => {
             player2Input && (player2Name = player2Input);
 
             const playerXName = document.getElementById('playerXName');
-            playerXName.innerText = player1 === 'X' ? player1Name : player2Name
-
-            const playerOName =  document.getElementById('playerOName');
+            playerXName.innerText = player1 === 'X' ? player1Name : player2Name;
+            const playerOName = document.getElementById('playerOName');
             playerOName.innerText = playerXName.innerText === player1Name ? player2Name : player1Name;
 
             if (gameMode === 'ai') {
@@ -244,7 +251,41 @@ const UI = (() => {
                     playerXName.innerText = `${difficulty} AI`;
                 }
             }
-        })
+        });
+
+        elements.boardCells.forEach((cell) => {
+            function handleMouseEnter() {
+                if (!cell.classList.contains('disabled')) {
+                    if (Game.getCurrentPlayer() === 'X') cell.classList.add('x');
+                    else cell.classList.add('o');
+                }
+            }
+
+            function handleMouseLeave() {
+                if (!cell.classList.contains('disabled')) {
+                    cell.classList.remove('x', 'o');
+                }
+                
+            }
+            cell.addEventListener('mouseenter', handleMouseEnter);
+            cell.addEventListener('mouseleave', handleMouseLeave);
+
+            function handleClick() {
+                if (!cell.classList.contains('disabled')) {
+                    if (Game.getCurrentPlayer() === 'X') cell.classList.add('x');
+                    else cell.classList.add('o');
+    
+                    Game.playTurn(cell.id);
+                    currentPlayer = Game.getCurrentPlayer();
+    
+                    cell.classList.add('disabled');
+                }
+            }
+
+            cell.addEventListener('click', handleClick);
+
+
+        });
     };
 
     const toggleTheme = () => {
@@ -294,5 +335,6 @@ UI.initUI({
     markBtns: document.querySelectorAll(".mark"),
     modeBtns: document.querySelectorAll(".modeSelectorBtns"),
     difficultySelect: document.getElementById("difficulty-selector"),
-    startBtn: document.querySelector('.start-btn')
+    startBtn: document.querySelector('.start-btn'),
+    boardCells: document.querySelectorAll('.cell'),
 });
