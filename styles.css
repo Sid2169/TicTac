@@ -16,7 +16,7 @@
 
  /* Light Mode (Activated when .light class is added to <body>) */
  .light {
-     --primary-color: #b0aeac;
+     --primary-color: #D0D0D0;
      --accent-color: #007B83;
      --text-color: #222831;
      --secondary-accent: #E0E0E0;
