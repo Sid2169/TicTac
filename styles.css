@@ -578,11 +578,16 @@
     margin-top: 1.5rem;
   }
   
+  #winner-announcement {
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  
   .hidden {
     display: none;
   }
   
-  /* Dark mode compatibility - you can adjust these as needed */
+  /* Dark mode compatibility */
   body.light .game-over-content {
     background-color: #fff;
     color: #000;

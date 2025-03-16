@@ -49,6 +49,7 @@ const Game = (() => {
     let isGameOver;
     let humanPlayer; // Stores human player's mark
     let aiPlayer; // Stores AI player's mark
+    let scores = { X: 0, O: 0 }; // Track scores
 
     const init = (gameMode = "2-player", difficulty = "easy", userMark = "X") => {
         Board.init();
@@ -68,6 +69,8 @@ const Game = (() => {
     };
 
     const getCurrentPlayer = () => currentPlayer;
+    
+    const getScores = () => ({...scores}); // Return a copy of the scores
 
     const playTurn = (index) => {
         if (isGameOver || !Board.makeMove(index, currentPlayer)) return false;
@@ -75,7 +78,14 @@ const Game = (() => {
         let winner = Board.checkWinner();
         if (winner) {
             isGameOver = true;
-            UI.showGameOverPopup(winner);
+            
+            // Update scores if there's a winner (not a draw)
+            if (winner !== 'draw') {
+                scores[winner]++;
+                updateScoreDisplay();
+            }
+            
+            UI.showGameOverPopup(winner, scores);
             return { status: "gameover", winner };
         }
 
@@ -100,6 +110,11 @@ const Game = (() => {
         }
     };
 
+    const updateScoreDisplay = () => {
+        document.getElementById('scoreX').textContent = scores.X;
+        document.getElementById('scoreO').textContent = scores.O;
+    };
+
     const resetGame = () => {
         Board.init();
         isGameOver = false;
@@ -116,7 +131,12 @@ const Game = (() => {
         }
     };
 
-    return { init, getCurrentPlayer, playTurn, resetGame };
+    const resetScores = () => {
+        scores = { X: 0, O: 0 };
+        updateScoreDisplay();
+    };
+
+    return { init, getCurrentPlayer, playTurn, resetGame, getScores, resetScores };
 })();
 
 // AI module for ai
@@ -218,8 +238,8 @@ const UI = (() => {
     // Store references to DOM elements (passed in)
     let elements = {};
 
-    const initUI = ({ themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn, boardCells }) => {
-        elements = { themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn, boardCells };
+    const initUI = ({ themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn, boardCells, resetBtn, resultBtn }) => {
+        elements = { themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn, boardCells, resetBtn, resultBtn };
 
         setEventListeners();
         initGameOverControls();
@@ -248,6 +268,7 @@ const UI = (() => {
 
         elements.startBtn.addEventListener('click', () => {
             Game.init(gameMode, difficulty, player1);
+            Game.resetScores(); // Reset scores when starting a new game
             document.querySelector('.markSelectorContainer').classList.add('hidden');
             document.querySelector('.game-panel').classList.remove('hidden');
             const player1Input = document.querySelector('.player1').value;
@@ -269,6 +290,20 @@ const UI = (() => {
                 }
             }
         });
+
+        // Add listeners for reset and result buttons
+        if (elements.resetBtn) {
+            elements.resetBtn.addEventListener('click', () => {
+                Game.resetGame();
+            });
+        }
+
+        if (elements.resultBtn) {
+            elements.resultBtn.addEventListener('click', () => {
+                const scores = Game.getScores();
+                showGameOverPopup('result', scores);
+            });
+        }
 
         elements.boardCells.forEach((cell) => {
             function handleMouseEnter() {
@@ -315,19 +350,24 @@ const UI = (() => {
         });
     };
 
-    const showGameOverPopup = (winner) => {
+    const showGameOverPopup = (winner, scores) => {
         const popup = document.getElementById('game-over-popup');
         const announcement = document.getElementById('winner-announcement');
         
+        // Get player names
+        const playerXName = document.getElementById('playerXName').textContent;
+        const playerOName = document.getElementById('playerOName').textContent;
+        
         // Set the winner announcement text
-        if (winner === 'draw') {
-            announcement.textContent = "It's a Draw!";
+        if (winner === 'result') {
+            // Just showing current score
+            announcement.innerHTML = `Current Score<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
+        } else if (winner === 'draw') {
+            announcement.innerHTML = `It's a Draw!<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
         } else if (winner === 'X') {
-            const playerName = document.getElementById('playerXName').textContent;
-            announcement.textContent = `${playerName} Wins!`;
+            announcement.innerHTML = `${playerXName} Wins!<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
         } else {
-            const playerName = document.getElementById('playerOName').textContent;
-            announcement.textContent = `${playerName} Wins!`;
+            announcement.innerHTML = `${playerOName} Wins!<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
         }
         
         // Show the popup
@@ -386,4 +426,6 @@ UI.initUI({
     difficultySelect: document.getElementById("difficulty-selector"),
     startBtn: document.querySelector('.start-btn'),
     boardCells: document.querySelectorAll('.cell'),
+    resetBtn: document.getElementById('reset'),
+    resultBtn: document.getElementById('result')
 });
