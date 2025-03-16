@@ -72,6 +72,12 @@ const Game = (() => {
     
     const getScores = () => ({...scores}); // Return a copy of the scores
 
+    const getOverallWinner = () => {
+        if (scores.X > scores.O) return 'X';
+        if (scores.O > scores.X) return 'O';
+        return 'draw'; // Tied score
+    };
+
     const playTurn = (index) => {
         if (isGameOver || !Board.makeMove(index, currentPlayer)) return false;
 
@@ -136,7 +142,7 @@ const Game = (() => {
         updateScoreDisplay();
     };
 
-    return { init, getCurrentPlayer, playTurn, resetGame, getScores, resetScores };
+    return { init, getCurrentPlayer, playTurn, resetGame, getScores, resetScores, getOverallWinner };
 })();
 
 // AI module for ai
@@ -301,7 +307,8 @@ const UI = (() => {
         if (elements.resultBtn) {
             elements.resultBtn.addEventListener('click', () => {
                 const scores = Game.getScores();
-                showGameOverPopup('result', scores);
+                const overallWinner = Game.getOverallWinner();
+                showOverallResultPopup(overallWinner, scores);
             });
         }
 
@@ -359,15 +366,33 @@ const UI = (() => {
         const playerOName = document.getElementById('playerOName').textContent;
         
         // Set the winner announcement text
-        if (winner === 'result') {
-            // Just showing current score
-            announcement.innerHTML = `Current Score<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
-        } else if (winner === 'draw') {
+        if (winner === 'draw') {
             announcement.innerHTML = `It's a Draw!<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
         } else if (winner === 'X') {
             announcement.innerHTML = `${playerXName} Wins!<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
         } else {
             announcement.innerHTML = `${playerOName} Wins!<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
+        }
+        
+        // Show the popup
+        popup.classList.remove('hidden');
+    };
+    
+    const showOverallResultPopup = (winner, scores) => {
+        const popup = document.getElementById('game-over-popup');
+        const announcement = document.getElementById('winner-announcement');
+        
+        // Get player names
+        const playerXName = document.getElementById('playerXName').textContent;
+        const playerOName = document.getElementById('playerOName').textContent;
+        
+        // Set the overall winner announcement text
+        if (winner === 'draw') {
+            announcement.innerHTML = `It's a Tie!<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
+        } else if (winner === 'X') {
+            announcement.innerHTML = `${playerXName} Leads!<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
+        } else {
+            announcement.innerHTML = `${playerOName} Leads!<br>${playerXName}: ${scores.X} - ${playerOName}: ${scores.O}`;
         }
         
         // Show the popup
