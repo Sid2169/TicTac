@@ -59,6 +59,8 @@ const Game = (() => {
         aiDifficulty = difficulty;
         isGameOver = false;
 
+        AI.setMarks(aiPlayer, humanPlayer); // Tells AI its mark
+
         // If AI is 'X', it should make the first move
         if (mode === "ai" && aiPlayer === "X") {
             playAITurn();
@@ -104,36 +106,38 @@ const Game = (() => {
 
 // AI module for ai
 const AI = (() => {
-    // Get available empty spots on the board
+    let aiMark = "O"; // Default, will be set properly by Game module
+    let humanMark = "X"; // Default
+
+    const setMarks = (ai, human) => {
+        aiMark = ai;
+        humanMark = human;
+    };
+
     const getAvailableMoves = (board) => board.map((val, index) => val === null ? index : null).filter(val => val !== null);
 
-
-    // Easy mode: Random move
     const getRandomMove = (board) => {
         const available = getAvailableMoves(board);
         return available.length > 0 ? available[Math.floor(Math.random() * available.length)] : -1;
     };
 
-    // Normal mode: Blocks winning moves
     const getNormalMove = (board) => {
         const available = getAvailableMoves(board);
         for (let move of available) {
             let testBoard = [...board];
-            testBoard[move] = "O"; // Simulate AI move
-            if (Board.checkWinner(testBoard) === "O") return move;
+            testBoard[move] = aiMark; // Simulate AI move
+            if (Board.checkWinner(testBoard) === aiMark) return move;
 
-            testBoard[move] = "X"; // Simulate player move
-            if (Board.checkWinner(testBoard) === "X") return move;
+            testBoard[move] = humanMark; // Simulate player move
+            if (Board.checkWinner(testBoard) === humanMark) return move;
         }
-        return getRandomMove(board); // If no critical move, pick random
+        return getRandomMove(board);
     };
 
-    // Hard mode: Plays optimally with occasional mistakes
     const getHardMove = (board) => {
         return Math.random() > 0.2 ? getUnbeatableMove(board) : getNormalMove(board);
     };
 
-    // Unbeatable mode: Minimax algorithm
     const getUnbeatableMove = (board) => {
         let bestScore = -Infinity;
         let bestMove = -1;
@@ -141,7 +145,7 @@ const AI = (() => {
 
         for (let move of available) {
             let testBoard = [...board];
-            testBoard[move] = "O"; // AI makes a move
+            testBoard[move] = aiMark; // AI makes a move
             let score = minimax(testBoard, false);
             if (score > bestScore) {
                 bestScore = score;
@@ -151,19 +155,18 @@ const AI = (() => {
         return bestMove;
     };
 
-    // Minimax Algorithm
     const minimax = (board, isMaximizing) => {
         let winner = Board.checkWinner(board);
-        if (winner === "O") return 10;
-        if (winner === "X") return -10;
-        if (!board.includes(null)) return 0; // Draw
+        if (winner === aiMark) return 10;
+        if (winner === humanMark) return -10;
+        if (!board.includes(null)) return 0;
 
         let bestScore = isMaximizing ? -Infinity : Infinity;
         const available = getAvailableMoves(board);
 
         for (let move of available) {
             let testBoard = [...board];
-            testBoard[move] = isMaximizing ? "O" : "X";
+            testBoard[move] = isMaximizing ? aiMark : humanMark;
             let score = minimax(testBoard, !isMaximizing);
             bestScore = isMaximizing ? Math.max(bestScore, score) : Math.min(bestScore, score);
         }
@@ -171,7 +174,6 @@ const AI = (() => {
         return bestScore;
     };
 
-    // Public function to get best move based on difficulty
     const getBestMove = (board, difficulty) => {
         switch (difficulty) {
             case "easy":
@@ -187,7 +189,7 @@ const AI = (() => {
         }
     };
 
-    return { getBestMove };
+    return { getBestMove, setMarks };
 })();
 
 const UI = (() => {
