@@ -517,6 +517,6 @@ UI.initUI({
     startBtn: document.querySelector('.start-btn'),
     boardCells: document.querySelectorAll('.cell'),
     resetBtn: document.getElementById('reset'),
-    resultBtn: document.getElementById('result')
-    homeBtn: document.getElementById('home');
+    resultBtn: document.getElementById('result'),
+    homeBtn: document.getElementById('home'),
 });
