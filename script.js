@@ -50,6 +50,7 @@ const Game = (() => {
     let humanPlayer; // Stores human player's mark
     let aiPlayer; // Stores AI player's mark
     let scores = { X: 0, O: 0 }; // Track scores
+    let inProgress = false; // Track if game is in progress
 
     const init = (gameMode = "2-player", difficulty = "easy", userMark = "X") => {
         Board.init();
@@ -59,6 +60,7 @@ const Game = (() => {
         mode = gameMode;
         aiDifficulty = difficulty;
         isGameOver = false;
+        inProgress = false;
 
         AI.setMarks(aiPlayer, humanPlayer); // Tells AI its mark
 
@@ -72,6 +74,11 @@ const Game = (() => {
     
     const getScores = () => ({...scores}); // Return a copy of the scores
 
+    const isInProgress = () => {
+        // Check if any moves have been made (game is in progress)
+        return Board.getBoard().some(cell => cell !== null);
+    };
+
     const getOverallWinner = () => {
         if (scores.X > scores.O) return 'X';
         if (scores.O > scores.X) return 'O';
@@ -81,9 +88,13 @@ const Game = (() => {
     const playTurn = (index) => {
         if (isGameOver || !Board.makeMove(index, currentPlayer)) return false;
 
+        // Mark game as in progress once moves are made
+        inProgress = true;
+
         let winner = Board.checkWinner();
         if (winner) {
             isGameOver = true;
+            inProgress = false;
             
             // Update scores if there's a winner (not a draw)
             if (winner !== 'draw') {
@@ -124,6 +135,7 @@ const Game = (() => {
     const resetGame = () => {
         Board.init();
         isGameOver = false;
+        inProgress = false;
         currentPlayer = "X";
         
         // Clear board UI
@@ -142,7 +154,16 @@ const Game = (() => {
         updateScoreDisplay();
     };
 
-    return { init, getCurrentPlayer, playTurn, resetGame, getScores, resetScores, getOverallWinner };
+    return { 
+        init, 
+        getCurrentPlayer, 
+        playTurn, 
+        resetGame, 
+        getScores, 
+        resetScores, 
+        getOverallWinner,
+        isInProgress
+    };
 })();
 
 // AI module for ai
@@ -244,8 +265,32 @@ const UI = (() => {
     // Store references to DOM elements (passed in)
     let elements = {};
 
-    const initUI = ({ themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn, boardCells, resetBtn, resultBtn }) => {
-        elements = { themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn, boardCells, resetBtn, resultBtn };
+    const initUI = ({ 
+        themeSwitch, 
+        popupOverlay,
+        popupConfirmBtn,
+        popupCancelBtn, 
+        markBtns, 
+        modeBtns, 
+        difficultySelect, 
+        startBtn, 
+        boardCells, 
+        resetBtn, 
+        resultBtn 
+    }) => {
+        elements = { 
+            themeSwitch, 
+            popupOverlay,
+            popupConfirmBtn,
+            popupCancelBtn, 
+            markBtns, 
+            modeBtns, 
+            difficultySelect, 
+            startBtn, 
+            boardCells, 
+            resetBtn, 
+            resultBtn 
+        };
 
         setEventListeners();
         initGameOverControls();
@@ -253,7 +298,11 @@ const UI = (() => {
 
     const setEventListeners = () => {
         elements.themeSwitch.addEventListener("change", toggleTheme);
-        elements.popupBtn.addEventListener("click", togglePopup);
+        elements.popupCancelBtn.addEventListener("click", togglePopup);
+        elements.popupConfirmBtn.addEventListener("click", () => {
+            togglePopup();
+            Game.resetGame();
+        });
         elements.difficultySelect.addEventListener("change", updateDifficulty);
 
         elements.markBtns.forEach((btn) => {
@@ -300,7 +349,14 @@ const UI = (() => {
         // Add listeners for reset and result buttons
         if (elements.resetBtn) {
             elements.resetBtn.addEventListener('click', () => {
-                Game.resetGame();
+                // Check if game is in progress
+                if (Game.isInProgress()) {
+                    // Show reset confirmation popup
+                    togglePopup();
+                } else {
+                    // If no game in progress, reset directly
+                    Game.resetGame();
+                }
             });
         }
 
@@ -408,7 +464,7 @@ const UI = (() => {
     };
 
     const togglePopup = () => {
-        document.querySelector(".translucent-overlay").classList.toggle("hidden");
+        elements.popupOverlay.classList.toggle("hidden");
     };
 
     const updatePlayers = (selectedMark) => {
@@ -445,7 +501,9 @@ const UI = (() => {
 // Initialize UI and pass necessary elements
 UI.initUI({
     themeSwitch: document.getElementById("themeSwitch"),
-    popupBtn: document.getElementById("cancel-popup-btn"),
+    popupOverlay: document.querySelector(".translucent-overlay"),
+    popupConfirmBtn: document.getElementById("confirm-popup-btn"),
+    popupCancelBtn: document.getElementById("cancel-popup-btn"),
     markBtns: document.querySelectorAll(".mark"),
     modeBtns: document.querySelectorAll(".modeSelectorBtns"),
     difficultySelect: document.getElementById("difficulty-selector"),
