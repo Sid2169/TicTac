@@ -180,15 +180,17 @@ const AI = (() => {
 
 const UI = (() => {
     let player1 = "X";
+    let player1Name = 'Player 1';
     let player2 = "O";
+    let player2Name = 'Player 2';
     let gameMode = "ai";
     let difficulty = "easy";
 
     // Store references to DOM elements (passed in)
     let elements = {};
 
-    const initUI = ({ themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect }) => {
-        elements = { themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect };
+    const initUI = ({ themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn }) => {
+        elements = { themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn };
 
         setEventListeners();
     };
@@ -213,6 +215,20 @@ const UI = (() => {
                 switchGameMode(btn.id);
             });
         });
+
+        elements.startBtn.addEventListener('click', () => {
+            document.querySelector('.markSelectorContainer').classList.add('hidden');
+            document.querySelector('.game-panel').classList.remove('hidden');
+            const player1Input = document.querySelector('.player1').value;
+            player1Input && (player1Name = player1Input);
+            const player2Input = document.querySelector('.player2').value;
+            player2Input && (player2Name = player2Input);
+
+            const playerXName = document.getElementById('playerXName');
+            playerXName.innerText = player1 === 'X' ? player1Name : player2Name
+
+            document.getElementById('playerOName').innerText = playerXName.innerText === player1Name ? player2Name : player1Name;
+        })
     };
 
     const toggleTheme = () => {
@@ -245,7 +261,9 @@ const UI = (() => {
 
     const getSettings = () => ({
         player1,
+        player1Name,
         player2,
+        player2Name,
         gameMode,
         difficulty,
     });
@@ -260,4 +278,5 @@ UI.initUI({
     markBtns: document.querySelectorAll(".mark"),
     modeBtns: document.querySelectorAll(".modeSelectorBtns"),
     difficultySelect: document.getElementById("difficulty-selector"),
+    startBtn: document.querySelector('.start-btn')
 });
