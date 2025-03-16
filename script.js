@@ -65,8 +65,6 @@ const Game = (() => {
         if (mode === "ai" && aiPlayer === "X") {
             playAITurn();
         }
-
-
     };
 
     const getCurrentPlayer = () => currentPlayer;
@@ -77,6 +75,7 @@ const Game = (() => {
         let winner = Board.checkWinner();
         if (winner) {
             isGameOver = true;
+            UI.showGameOverPopup(winner);
             return { status: "gameover", winner };
         }
 
@@ -101,7 +100,23 @@ const Game = (() => {
         }
     };
 
-    return { init, getCurrentPlayer, playTurn };
+    const resetGame = () => {
+        Board.init();
+        isGameOver = false;
+        currentPlayer = "X";
+        
+        // Clear board UI
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.classList.remove('x', 'o', 'disabled');
+        });
+        
+        // If AI is X, it should make the first move
+        if (mode === "ai" && aiPlayer === "X") {
+            playAITurn();
+        }
+    };
+
+    return { init, getCurrentPlayer, playTurn, resetGame };
 })();
 
 // AI module for ai
@@ -207,6 +222,7 @@ const UI = (() => {
         elements = { themeSwitch, popupBtn, markBtns, modeBtns, difficultySelect, startBtn, boardCells };
 
         setEventListeners();
+        initGameOverControls();
     };
 
     const setEventListeners = () => {
@@ -231,7 +247,6 @@ const UI = (() => {
         });
 
         elements.startBtn.addEventListener('click', () => {
-
             Game.init(gameMode, difficulty, player1);
             document.querySelector('.markSelectorContainer').classList.add('hidden');
             document.querySelector('.game-panel').classList.remove('hidden');
@@ -285,9 +300,42 @@ const UI = (() => {
             }
 
             cell.addEventListener('click', handleClick);
-
-
         });
+    };
+
+    const initGameOverControls = () => {
+        // Add event listeners for game over popup buttons
+        document.getElementById('next-round-btn').addEventListener('click', () => {
+            hideGameOverPopup();
+            Game.resetGame();
+        });
+        
+        document.getElementById('go-home-btn').addEventListener('click', () => {
+            location.reload();
+        });
+    };
+
+    const showGameOverPopup = (winner) => {
+        const popup = document.getElementById('game-over-popup');
+        const announcement = document.getElementById('winner-announcement');
+        
+        // Set the winner announcement text
+        if (winner === 'draw') {
+            announcement.textContent = "It's a Draw!";
+        } else if (winner === 'X') {
+            const playerName = document.getElementById('playerXName').textContent;
+            announcement.textContent = `${playerName} Wins!`;
+        } else {
+            const playerName = document.getElementById('playerOName').textContent;
+            announcement.textContent = `${playerName} Wins!`;
+        }
+        
+        // Show the popup
+        popup.classList.remove('hidden');
+    };
+    
+    const hideGameOverPopup = () => {
+        document.getElementById('game-over-popup').classList.add('hidden');
     };
 
     const toggleTheme = () => {
@@ -313,7 +361,6 @@ const UI = (() => {
         player2.classList.toggle('hidden', isAiMode);
     };
 
-
     const updateDifficulty = () => {
         difficulty = elements.difficultySelect.value;
     };
@@ -327,7 +374,7 @@ const UI = (() => {
         difficulty,
     });
 
-    return { initUI, getSettings };
+    return { initUI, getSettings, showGameOverPopup, hideGameOverPopup };
 })();
 
 // Initialize UI and pass necessary elements
