@@ -227,7 +227,17 @@ const UI = (() => {
             const playerXName = document.getElementById('playerXName');
             playerXName.innerText = player1 === 'X' ? player1Name : player2Name
 
-            document.getElementById('playerOName').innerText = playerXName.innerText === player1Name ? player2Name : player1Name;
+            const playerOName =  document.getElementById('playerOName');
+            playerOName.innerText = playerXName.innerText === player1Name ? player2Name : player1Name;
+
+            if (gameMode === 'ai') {
+                if (player1Name === playerXName.innerText) {
+                    playerOName.innerText = `${difficulty} AI`;
+                }
+                else {
+                    playerXName.innerText = `${difficulty} AI`;
+                }
+            }
         })
     };
 
@@ -249,11 +259,11 @@ const UI = (() => {
         const difficultySelector = document.getElementById('difficulty-selector');
         const player2 = document.querySelector('.player2');
         const isAiMode = (gameMode === 'ai');
-      
+
         difficultySelector.classList.toggle('hidden', !isAiMode);
         player2.classList.toggle('hidden', isAiMode);
-      };
-      
+    };
+
 
     const updateDifficulty = () => {
         difficulty = elements.difficultySelect.value;
