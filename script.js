@@ -276,7 +276,8 @@ const UI = (() => {
         startBtn, 
         boardCells, 
         resetBtn, 
-        resultBtn 
+        resultBtn,
+        homeBtn,
     }) => {
         elements = { 
             themeSwitch, 
@@ -289,7 +290,8 @@ const UI = (() => {
             startBtn, 
             boardCells, 
             resetBtn, 
-            resultBtn 
+            resultBtn,
+            homeBtn,
         };
 
         setEventListeners();
@@ -344,6 +346,7 @@ const UI = (() => {
                     playerXName.innerText = `${difficulty} AI`;
                 }
             }
+        
         });
 
         // Add listeners for reset and result buttons
@@ -367,6 +370,10 @@ const UI = (() => {
                 showOverallResultPopup(overallWinner, scores);
             });
         }
+
+        elements.homeBtn.addEventListener('click', () => {
+            location.reload();
+        })
 
         elements.boardCells.forEach((cell) => {
             function handleMouseEnter() {
@@ -511,4 +518,5 @@ UI.initUI({
     boardCells: document.querySelectorAll('.cell'),
     resetBtn: document.getElementById('reset'),
     resultBtn: document.getElementById('result')
+    homeBtn: document.getElementById('home');
 });
