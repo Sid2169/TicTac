@@ -222,7 +222,7 @@ const UI = (() => {
 
         elements.startBtn.addEventListener('click', () => {
             
-            Game.init(gameMode, difficulty);
+            Game.init(gameMode, difficulty, player1);
             document.querySelector('.markSelectorContainer').classList.add('hidden');
             document.querySelector('.game-panel').classList.remove('hidden');
             const player1Input = document.querySelector('.player1').value;
