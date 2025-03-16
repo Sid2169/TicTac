@@ -495,7 +495,7 @@
 
 #gameBoard {
     width: 400px;
-    max-width: 80%;
+    max-width: 60%;
     margin: 1rem auto;
     padding: 1rem;
     background-color: var(--primary-color);
@@ -512,10 +512,40 @@
     justify-content: center;
     align-items: center;
 }
+
 .cell.x {
     background: var(--secondary-accent) url('images/x.png') no-repeat center/cover;
 }
 
 .cell.o {
     background: var(--secondary-accent) url('images/o.png') no-repeat center/cover;
+}
+
+.cell:hover {
+    background-color: var(--accent-color);
+}
+
+#reset, #result {
+    padding: 0.4rem;
+    background-color: var(--secondary-accent);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    margin: 0.5rem 1rem;
+    font-family: 'Spicy Rice';
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+#reset:hover ,#result:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    transform: scale(1.2);
+    transition: 0.3s;
+    box-shadow: 0px 0px 8px 4px rgba(255, 255, 255, 0.9);
+}
+
+#reset:active, #result:active {
+    transform: scale(0.9);
+    transition: 0.1s;
+    box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.6);
 }
