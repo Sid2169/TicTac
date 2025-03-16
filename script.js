@@ -47,9 +47,13 @@ const Game = (() => {
     let mode; // "2-player" or "ai"
     let aiDifficulty;
     let isGameOver;
+    let humanPlayer; // Stores human player's mark
+    let aiPlayer; // Stores AI player's mark
 
-    const init = (gameMode = "2-player", difficulty = "easy") => {
+    const init = (gameMode = "2-player", difficulty = "easy", userMark = "X") => {
         Board.init();
+        humanPlayer = userMark;
+        aiPlayer = userMark === "X" ? "O" : "X"; // AI takes the other mark
         currentPlayer = "X"; // X always starts
         mode = gameMode;
         aiDifficulty = difficulty;
@@ -69,7 +73,7 @@ const Game = (() => {
 
         switchTurn();
 
-        if (mode === "ai" && currentPlayer === "O") {
+        if (mode === "ai" && currentPlayer === aiPlayer) {
             playAITurn();
         }
 
