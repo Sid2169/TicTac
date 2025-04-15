@@ -792,3 +792,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **theme toggle** — Keep the terminology consistent with the rest of the project.
 - **score tracking** — Keep the terminology consistent with the rest of the project.
 - **responsive layout** — Include a short reproduction step when reporting issues.
+- **score tracking** — Verify the change in both development and production builds.
