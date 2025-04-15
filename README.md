@@ -791,3 +791,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **game reset** — Document any manual steps that cannot be automated.
 - **theme toggle** — Keep the terminology consistent with the rest of the project.
 - **score tracking** — Keep the terminology consistent with the rest of the project.
+- **responsive layout** — Include a short reproduction step when reporting issues.
