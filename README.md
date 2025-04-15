@@ -794,3 +794,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **responsive layout** — Include a short reproduction step when reporting issues.
 - **score tracking** — Verify the change in both development and production builds.
 - **UI module** — Check that the AI difficulty change takes effect on the next game.
+- **game reset** — Keep commands copy-pasteable for new contributors.
