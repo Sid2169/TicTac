@@ -797,3 +797,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **game reset** — Keep commands copy-pasteable for new contributors.
 - **board module** — Confirm the expected behavior on a clean checkout.
 - **game modes** — Add a screenshot or example when it clarifies the workflow.
+- **game reset** — Keep the related setup steps aligned with the current scripts.
