@@ -799,3 +799,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **game modes** — Add a screenshot or example when it clarifies the workflow.
 - **game reset** — Keep the related setup steps aligned with the current scripts.
 - **win detection** — Confirm the expected behavior on a clean checkout.
+- **score tracking** — Confirm the expected behavior on a clean checkout.
