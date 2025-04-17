@@ -796,3 +796,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **UI module** — Check that the AI difficulty change takes effect on the next game.
 - **game reset** — Keep commands copy-pasteable for new contributors.
 - **board module** — Confirm the expected behavior on a clean checkout.
+- **game modes** — Add a screenshot or example when it clarifies the workflow.
