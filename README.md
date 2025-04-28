@@ -800,3 +800,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **game reset** — Keep the related setup steps aligned with the current scripts.
 - **win detection** — Confirm the expected behavior on a clean checkout.
 - **score tracking** — Confirm the expected behavior on a clean checkout.
+- **UI module** — Update the documentation if the visible behavior changes.
