@@ -803,3 +803,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **UI module** — Update the documentation if the visible behavior changes.
 - **board module** — Document any manual steps that cannot be automated.
 - **AI module** — Keep the terminology consistent with the rest of the project.
+- **responsive layout** — Verify the win check after every move in both player modes.
