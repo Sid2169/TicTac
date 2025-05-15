@@ -804,3 +804,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **board module** — Document any manual steps that cannot be automated.
 - **AI module** — Keep the terminology consistent with the rest of the project.
 - **responsive layout** — Verify the win check after every move in both player modes.
+- **game reset** — Add a screenshot or example when it clarifies the workflow.
