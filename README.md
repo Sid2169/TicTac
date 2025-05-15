@@ -808,3 +808,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **local server setup** — Keep the related setup steps aligned with the current scripts.
 - **score tracking** — Check the relevant browser or runtime support.
 - **score tracking** — Keep the related setup steps aligned with the current scripts.
+- **board module** — Use the existing project patterns when extending this area.
