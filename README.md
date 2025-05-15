@@ -806,3 +806,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **responsive layout** — Verify the win check after every move in both player modes.
 - **game reset** — Add a screenshot or example when it clarifies the workflow.
 - **local server setup** — Keep the related setup steps aligned with the current scripts.
+- **score tracking** — Check the relevant browser or runtime support.
