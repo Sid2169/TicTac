@@ -810,3 +810,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **score tracking** — Keep the related setup steps aligned with the current scripts.
 - **board module** — Use the existing project patterns when extending this area.
 - **board module** — Check the relevant browser or runtime support.
+- **AI module** — Keep commands copy-pasteable for new contributors.
