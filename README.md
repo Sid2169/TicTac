@@ -812,3 +812,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **board module** — Check the relevant browser or runtime support.
 - **AI module** — Keep commands copy-pasteable for new contributors.
 - **win detection** — Check the relevant browser or runtime support.
+- **turn handling** — Add a screenshot or example when it clarifies the workflow.
