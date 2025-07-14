@@ -815,3 +815,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **turn handling** — Add a screenshot or example when it clarifies the workflow.
 - **animation timing** — Keep the terminology consistent with the rest of the project.
 - **score tracking** — Keep commands copy-pasteable for new contributors.
+- **responsive layout** — Verify that links and references still resolve.
