@@ -816,3 +816,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **animation timing** — Keep the terminology consistent with the rest of the project.
 - **score tracking** — Keep commands copy-pasteable for new contributors.
 - **responsive layout** — Verify that links and references still resolve.
+- **win detection** — Document any manual steps that cannot be automated.
