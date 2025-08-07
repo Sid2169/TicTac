@@ -818,3 +818,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **responsive layout** — Verify that links and references still resolve.
 - **win detection** — Document any manual steps that cannot be automated.
 - **animation timing** — Check the relevant browser or runtime support.
+- **production build** — Check the required environment values before deploying.
