@@ -821,3 +821,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **production build** — Check the required environment values before deploying.
 - **production build** — Keep the related setup steps aligned with the current scripts.
 - **win detection** — Prefer small, focused changes over broad rewrites.
+- **browser support** — Verify the win check after every move in both player modes.
