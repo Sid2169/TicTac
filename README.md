@@ -819,3 +819,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **win detection** — Document any manual steps that cannot be automated.
 - **animation timing** — Check the relevant browser or runtime support.
 - **production build** — Check the required environment values before deploying.
+- **production build** — Keep the related setup steps aligned with the current scripts.
