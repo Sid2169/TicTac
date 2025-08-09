@@ -820,3 +820,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **animation timing** — Check the relevant browser or runtime support.
 - **production build** — Check the required environment values before deploying.
 - **production build** — Keep the related setup steps aligned with the current scripts.
+- **win detection** — Prefer small, focused changes over broad rewrites.
