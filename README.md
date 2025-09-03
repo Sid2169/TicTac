@@ -823,3 +823,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **win detection** — Prefer small, focused changes over broad rewrites.
 - **browser support** — Verify the win check after every move in both player modes.
 - **local server setup** — Include a short reproduction step when reporting issues.
+- **keyboard controls** — Keep the related setup steps aligned with the current scripts.
