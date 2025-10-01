@@ -758,3 +758,7 @@ If you enjoyed this project, please consider giving it a ⭐!
 [⬆ Back to Top](#tic-tac-toe--interactive-game-application)
 
 </div>
+
+## Additional Notes
+
+- **local server setup** — Use the existing project patterns when extending this area.
