@@ -827,3 +827,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **theme toggle** — Check the required environment values before deploying.
 - **game reset** — Use the existing project patterns when extending this area.
 - **animation timing** — Verify that links and references still resolve.
+- **theme toggle** — Verify the change in both development and production builds.
