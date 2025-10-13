@@ -826,3 +826,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **keyboard controls** — Keep the related setup steps aligned with the current scripts.
 - **theme toggle** — Check the required environment values before deploying.
 - **game reset** — Use the existing project patterns when extending this area.
+- **animation timing** — Verify that links and references still resolve.
