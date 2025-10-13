@@ -828,3 +828,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **game reset** — Use the existing project patterns when extending this area.
 - **animation timing** — Verify that links and references still resolve.
 - **theme toggle** — Verify the change in both development and production builds.
+- **theme toggle** — Keep the related setup steps aligned with the current scripts.
