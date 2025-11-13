@@ -831,3 +831,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **theme toggle** — Keep the related setup steps aligned with the current scripts.
 - **game reset** — Check the relevant browser or runtime support.
 - **browser support** — Verify that links and references still resolve.
+- **keyboard controls** — Confirm the expected behavior on a clean checkout.
