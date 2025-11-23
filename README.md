@@ -835,3 +835,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **theme toggle** — Verify the win check after every move in both player modes.
 - **responsive layout** — Keep the related setup steps aligned with the current scripts.
 - **game modes** — Keep commands copy-pasteable for new contributors.
+- **UI module** — Verify that links and references still resolve.
