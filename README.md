@@ -832,3 +832,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **game reset** — Check the relevant browser or runtime support.
 - **browser support** — Verify that links and references still resolve.
 - **keyboard controls** — Confirm the expected behavior on a clean checkout.
+- **theme toggle** — Verify the win check after every move in both player modes.
