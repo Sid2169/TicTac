@@ -833,3 +833,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **browser support** — Verify that links and references still resolve.
 - **keyboard controls** — Confirm the expected behavior on a clean checkout.
 - **theme toggle** — Verify the win check after every move in both player modes.
+- **responsive layout** — Keep the related setup steps aligned with the current scripts.
