@@ -762,3 +762,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 ## Additional Notes
 
 - **local server setup** — Use the existing project patterns when extending this area.
+- **accessibility** — Check that the AI difficulty change takes effect on the next game.
