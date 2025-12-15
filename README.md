@@ -7,9 +7,7 @@
 
 > A modern, feature-rich Tic-Tac-Toe game built with vanilla JavaScript, featuring AI opponents with multiple difficulty levels, two-player mode, and an elegant dark/light theme interface.
 
-![Website's Screen Shot](![Desktop View Home page](image.png))
-![Website's Screen Shot](![Desktop View Game](image-1.png))
-![Website's Screen Shot](![Mobile View](image-2.png)) ![Website's Screen Shot](![Mobile View Game](image-3.png))
+![Home Page Desktop View](![Desktop View Home page](image.png))
 
 [Live Demo](https://sid2169.github.io/TicTac/) • [Report Bug](https://github.com/Sid2169/TicTac/issues) • [Request Feature](https://github.com/Sid2169/TicTac/issues)
 
@@ -252,8 +250,8 @@ const minimax = (board, isMaximizing) => {
 
 ```bash
 # Clone the repository
-git clone https://github.com/Sid2169/tic-tac-toe.git
-cd tic-tac-toe
+git clone https://github.com/Sid2169/TicTac.git
+cd TicTac
 
 # Open in browser
 # Simply double-click index.html or use a local server
@@ -715,7 +713,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 - GitHub: [@Sid2169](https://github.com/Sid2169)
 - LinkedIn: [Siddhartha Singh](https://www.linkedin.com/in/siddhartha-singh-952a64256/)
-- Project Link: [Tic-Tac-Toe](https://github.com/Sid2169/tic-tac-toe)
+- Project Link: [Tic-Tac-Toe](https://github.com/Sid2169/TicTac)
 
 ---
 
@@ -743,6 +741,11 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - [MDN Web Docs](https://developer.mozilla.org/)
 - [JavaScript.info](https://javascript.info/)
 - [CSS Tricks](https://css-tricks.com/)
+
+### More Screen Shots
+![Game Page Desktop View](![Desktop View Game](image-1.png))
+![Home Page Mobile View](![Mobile View](image-2.png)) 
+![Game Page Mobile View](![Mobile View Game](image-3.png))
 
 ---
 
