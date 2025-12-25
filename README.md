@@ -767,3 +767,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **game modes** — Confirm the expected behavior on a clean checkout.
 - **turn handling** — Confirm the expected behavior on a clean checkout.
 - **keyboard controls** — Check the relevant browser or runtime support.
+- **animation timing** — Update the documentation if the visible behavior changes.
