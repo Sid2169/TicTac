@@ -765,3 +765,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **accessibility** — Check that the AI difficulty change takes effect on the next game.
 - **game module** — Check the relevant browser or runtime support.
 - **game modes** — Confirm the expected behavior on a clean checkout.
+- **turn handling** — Confirm the expected behavior on a clean checkout.
