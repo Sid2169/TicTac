@@ -769,3 +769,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **keyboard controls** — Check the relevant browser or runtime support.
 - **animation timing** — Update the documentation if the visible behavior changes.
 - **responsive layout** — Confirm the expected behavior on a clean checkout.
+- **UI module** — Verify the win check after every move in both player modes.
