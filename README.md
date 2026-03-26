@@ -771,3 +771,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **responsive layout** — Confirm the expected behavior on a clean checkout.
 - **UI module** — Verify the win check after every move in both player modes.
 - **accessibility** — Include a short reproduction step when reporting issues.
+- **score tracking** — Verify the win check after every move in both player modes.
