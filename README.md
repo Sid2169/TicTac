@@ -773,3 +773,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **accessibility** — Include a short reproduction step when reporting issues.
 - **score tracking** — Verify the win check after every move in both player modes.
 - **animation timing** — Prefer small, focused changes over broad rewrites.
+- **game module** — Verify the win check after every move in both player modes.
