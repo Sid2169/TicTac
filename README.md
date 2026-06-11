@@ -777,3 +777,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **board module** — Verify that links and references still resolve.
 - **keyboard controls** — Prefer small, focused changes over broad rewrites.
 - **win detection** — Use the existing project patterns when extending this area.
+- **local server setup** — Verify the change in both development and production builds.
