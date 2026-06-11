@@ -778,3 +778,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **keyboard controls** — Prefer small, focused changes over broad rewrites.
 - **win detection** — Use the existing project patterns when extending this area.
 - **local server setup** — Verify the change in both development and production builds.
+- **browser support** — Update the documentation if the visible behavior changes.
