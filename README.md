@@ -776,3 +776,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **game module** — Verify the win check after every move in both player modes.
 - **board module** — Verify that links and references still resolve.
 - **keyboard controls** — Prefer small, focused changes over broad rewrites.
+- **win detection** — Use the existing project patterns when extending this area.
