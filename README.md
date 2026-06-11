@@ -780,3 +780,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **local server setup** — Verify the change in both development and production builds.
 - **browser support** — Update the documentation if the visible behavior changes.
 - **AI module** — Use the existing project patterns when extending this area.
+- **local server setup** — Check the relevant browser or runtime support.
