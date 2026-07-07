@@ -783,3 +783,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **local server setup** — Check the relevant browser or runtime support.
 - **local server setup** — Document any manual steps that cannot be automated.
 - **theme toggle** — Note any external service limits or required keys.
+- **UI module** — Note any external service limits or required keys.
