@@ -782,3 +782,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **AI module** — Use the existing project patterns when extending this area.
 - **local server setup** — Check the relevant browser or runtime support.
 - **local server setup** — Document any manual steps that cannot be automated.
+- **theme toggle** — Note any external service limits or required keys.
