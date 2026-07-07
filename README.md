@@ -785,3 +785,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **theme toggle** — Note any external service limits or required keys.
 - **UI module** — Note any external service limits or required keys.
 - **UI module** — Include a short reproduction step when reporting issues.
+- **board module** — Check the required environment values before deploying.
