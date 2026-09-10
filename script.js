@@ -41,6 +41,56 @@ const Board = (() => {
     return { init, getBoard, makeMove, checkWinner };
 })();
 
+const Sound = (() => {
+    const sounds = {
+        click: new Audio('audio/clickSound.mp3'),
+        gameStart: new Audio('audio/gameStart.mp3'),
+        roundEnd: new Audio('audio/roundEnd.mp3'),
+        homeBgm: new Audio('audio/homeBgm.mp3'),
+        gameBgm: new Audio('audio/gameBgm.mp3'),
+    };
+    let currentBgm = null;
+
+    const play = (name) => {
+        const s = sounds[name];
+        if (s) {
+            s.currentTime = 0;
+            s.play();
+        }
+    };
+
+    const playBgm = (name) => {
+        stopBgm();
+        const s = sounds[name];
+        if (s) {
+            s.loop = true;
+            s.currentTime = 0;
+            s.play();
+            currentBgm = s;
+        }
+    };
+
+    const stopBgm = () => {
+        if (currentBgm) {
+            currentBgm.pause();
+            currentBgm.currentTime = 0;
+            currentBgm = null;
+        }
+    };
+
+    const ensureBgmResume = () => {
+        const resume = () => {
+            if (currentBgm) currentBgm.play();
+            document.removeEventListener('pointerdown', resume);
+            document.removeEventListener('keydown', resume);
+        };
+        document.addEventListener('pointerdown', resume);
+        document.addEventListener('keydown', resume);
+    };
+
+    return { play, playBgm, stopBgm, ensureBgmResume };
+})();
+
 
 const Game = (() => {
     let currentPlayer;
@@ -326,6 +376,8 @@ const UI = (() => {
         elements.startBtn.addEventListener('click', () => {
             Game.init(gameMode, difficulty, player1);
             Game.resetScores(); // Reset scores when starting a new game
+            Sound.play('gameStart');
+            Sound.playBgm('gameBgm');
             document.querySelector('.markSelectorContainer').classList.add('hidden');
             document.querySelector('.game-panel').classList.remove('hidden');
             const player1Input = document.querySelector('.player1').value;
@@ -372,6 +424,7 @@ const UI = (() => {
         }
 
         elements.homeBtn.addEventListener('click', () => {
+            Sound.playBgm('homeBgm');
             location.reload();
         })
 
@@ -394,6 +447,8 @@ const UI = (() => {
 
             function handleClick() {
                 if (!cell.classList.contains('disabled')) {
+                    Sound.play('click');
+
                     if (Game.getCurrentPlayer() === 'X') cell.classList.add('x');
                     else cell.classList.add('o');
     
@@ -416,6 +471,7 @@ const UI = (() => {
         });
         
         document.getElementById('go-home-btn').addEventListener('click', () => {
+            Sound.playBgm('homeBgm');
             location.reload();
         });
     };
@@ -423,6 +479,8 @@ const UI = (() => {
     const showGameOverPopup = (winner, scores) => {
         const popup = document.getElementById('game-over-popup');
         const announcement = document.getElementById('winner-announcement');
+        
+        Sound.play('roundEnd');
         
         // Get player names
         const playerXName = document.getElementById('playerXName').textContent;
@@ -520,3 +578,16 @@ UI.initUI({
     resultBtn: document.getElementById('result'),
     homeBtn: document.getElementById('home'),
 });
+
+// Reset difficulty selector on page load (browsers may restore the old value)
+document.getElementById('difficulty-selector').value = 'easy';
+
+// Reset player name inputs on page load (browsers may restore the old values)
+document.querySelector('.player1').value = '';
+document.querySelector('.player2').value = '';
+
+// Start home background music on page load
+Sound.playBgm('homeBgm');
+
+// Retry BGM on first user interaction (browsers block autoplay)
+Sound.ensureBgmResume();
