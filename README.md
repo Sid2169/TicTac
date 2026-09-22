@@ -788,3 +788,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **board module** — Check the required environment values before deploying.
 - **accessibility** — Update the documentation if the visible behavior changes.
 - **local server setup** — Prefer small, focused changes over broad rewrites.
+- **game reset** — Document any manual steps that cannot be automated.
