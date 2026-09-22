@@ -786,3 +786,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **UI module** — Note any external service limits or required keys.
 - **UI module** — Include a short reproduction step when reporting issues.
 - **board module** — Check the required environment values before deploying.
+- **accessibility** — Update the documentation if the visible behavior changes.
