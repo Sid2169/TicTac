@@ -787,3 +787,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **UI module** — Include a short reproduction step when reporting issues.
 - **board module** — Check the required environment values before deploying.
 - **accessibility** — Update the documentation if the visible behavior changes.
+- **local server setup** — Prefer small, focused changes over broad rewrites.
