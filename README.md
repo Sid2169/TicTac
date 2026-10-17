@@ -790,3 +790,4 @@ If you enjoyed this project, please consider giving it a ⭐!
 - **local server setup** — Prefer small, focused changes over broad rewrites.
 - **game reset** — Document any manual steps that cannot be automated.
 - **theme toggle** — Keep the terminology consistent with the rest of the project.
+- **score tracking** — Keep the terminology consistent with the rest of the project.
